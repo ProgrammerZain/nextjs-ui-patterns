@@ -34,6 +34,12 @@ export default function RootLayout({
                 Home
               </Link>
               <Link 
+                href="/chat/room-a" 
+                className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+              >
+                Chat Socket Demo
+              </Link>
+              <Link 
                 href="/labs" 
                 className="text-slate-400 hover:text-cyan-400 transition-colors"
               >
