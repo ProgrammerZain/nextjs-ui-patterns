@@ -34,6 +34,12 @@ export default function RootLayout({
                 Home
               </Link>
               <Link 
+                href="/dashboard/transfer" 
+                className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors"
+              >
+                Dashboard Demo
+              </Link>
+              <Link 
                 href="/labs" 
                 className="text-slate-400 hover:text-cyan-400 transition-colors"
               >
