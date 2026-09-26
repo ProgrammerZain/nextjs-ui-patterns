@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { useEffect, useState } from "react";
 import { DollarSign, TrendingUp, ShoppingBag, Sparkles } from "lucide-react";
 
 export interface StatsData {
@@ -14,8 +14,11 @@ export default function StatsCard({
 }: {
   promise: Promise<StatsData>;
 }): React.JSX.Element {
+  const [stats, setStats] = useState<StatsData>({revenue: 0,orders: 0,growth:"0%"})
   // Unwrap the pending promise on the client using React 19's use() API
-  const stats = use(promise);
+  useEffect(() => {
+    promise.then((res) => setStats(res))
+  }, [promise])
 
   return (
     <div className="p-6 rounded-2xl border border-cyan-800/80 bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-slate-950/90 space-y-6 shadow-xl shadow-cyan-950/20 animate-in fade-in zoom-in-95 duration-300">
@@ -50,7 +53,7 @@ export default function StatsCard({
             <ShoppingBag className="w-4 h-4 text-cyan-400" />
           </div>
           <div className="text-3xl font-mono font-extrabold text-slate-50">
-            {stats.orders || 142}
+            {stats.orders ?? 142}
           </div>
           <div className="text-[11px] text-slate-400">
             Automated fulfillment active
