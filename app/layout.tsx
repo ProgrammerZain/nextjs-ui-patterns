@@ -34,6 +34,12 @@ export default function RootLayout({
                 Home
               </Link>
               <Link 
+                href="/patients/1" 
+                className="text-rose-400 hover:text-rose-300 font-semibold transition-colors"
+              >
+                Patients Demo
+              </Link>
+              <Link 
                 href="/labs" 
                 className="text-slate-400 hover:text-cyan-400 transition-colors"
               >
