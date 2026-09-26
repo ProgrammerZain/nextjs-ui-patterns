@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import StatsSkeleton from "./StatsSkeleton";
+import React, { use } from "react";
 import { DollarSign, TrendingUp, ShoppingBag, Sparkles } from "lucide-react";
 
 export interface StatsData {
@@ -15,47 +14,18 @@ export default function StatsCard({
 }: {
   promise: Promise<StatsData>;
 }): React.JSX.Element {
-  const [stats, setStats] = useState<StatsData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // Manual useEffect Promise resolution
-  useEffect(() => {
-    let isMounted = true;
-    setLoading(true);
-
-    promise
-      .then((res) => {
-        if (isMounted) {
-          setStats(res);
-          setLoading(false);
-        }
-      })
-      .catch(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [promise]);
-
-  // Since useEffect DOES NOT trigger parent <Suspense>,
-  // we must manually return the Skeleton fallback while loading is true!
-  if (loading || !stats) {
-    return <StatsSkeleton />;
-  }
+  // Unwrap the pending RSC promise on the client using React 19's use() API
+  const stats = use(promise);
 
   return (
     <div className="p-6 rounded-2xl border border-cyan-800/80 bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-slate-950/90 space-y-6 shadow-xl shadow-cyan-950/20 animate-in fade-in zoom-in-95 duration-300">
       <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
         <div className="flex items-center gap-2 text-cyan-400 font-bold text-sm">
           <Sparkles className="w-4 h-4" />
-          <span>Manual useEffect Solution (Stateful Loading)</span>
+          <span>React 19 use(promise) Unwrapped Result</span>
         </div>
-        <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded-full border border-cyan-800/50">
-          Manual Skeleton Render (3s delay)
+        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-800/50">
+          Streamed &amp; Unwrapped (3s delay)
         </span>
       </div>
 
@@ -93,10 +63,10 @@ export default function StatsCard({
             <Sparkles className="w-4 h-4 text-purple-400" />
           </div>
           <div className="text-base font-bold text-cyan-400 mt-1">
-            `useEffect` + `useState`
+            React 19 `use()`
           </div>
           <div className="text-[11px] text-slate-400 leading-snug">
-            Manual component-level loading check
+            Server promise unwrapped on client via Suspense
           </div>
         </div>
       </div>
