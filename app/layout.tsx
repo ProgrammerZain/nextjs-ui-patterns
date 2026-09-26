@@ -34,6 +34,12 @@ export default function RootLayout({
                 Home
               </Link>
               <Link 
+                href="/accounts/personal" 
+                className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
+              >
+                Accounts Demo
+              </Link>
+              <Link 
                 href="/labs" 
                 className="text-slate-400 hover:text-cyan-400 transition-colors"
               >
