@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "Next.js App Router Lab",
+    "version": "1.0.0",
+    "environment": "development"
+  },
+  "user": {
+    "name": "Alex Mercer",
+    "email": "alex.mercer@example.com",
+    "role": "Lead Architect",
+    "preferences": {
+      "notifications": true,
+      "autoSave": true,
+      "defaultTheme": "dark"
+    }
+  },
+  "settings": {
+    "apiEndpoint": "https://api.example.com/v1",
+    "timeoutMs": 5000,
+    "maxRetries": 3
+  }
+}
