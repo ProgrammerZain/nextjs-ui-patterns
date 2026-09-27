@@ -1,0 +1,26 @@
+[
+  {
+    "id": "lead-1790530894129-kzjx",
+    "name": "Zain Irfan",
+    "email": "zainirfan565@gmail.com",
+    "createdAt": "2026-09-27T17:41:34.129Z"
+  },
+  {
+    "id": "lead-101",
+    "name": "Elena Rostova",
+    "email": "elena.rostova@techcorp.io",
+    "createdAt": "2026-09-25T17:39:11.731Z"
+  },
+  {
+    "id": "lead-102",
+    "name": "Marcus Vance",
+    "email": "marcus.vance@innovate.dev",
+    "createdAt": "2026-09-26T17:39:11.731Z"
+  },
+  {
+    "id": "lead-103",
+    "name": "Sofia Patel",
+    "email": "sofia.patel@cloudscale.net",
+    "createdAt": "2026-09-27T13:39:11.731Z"
+  }
+]
