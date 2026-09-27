@@ -1,55 +1,41 @@
-import Link from "next/link";
+import { HoverBox } from "@/components/HoverBox";
 
 export default function Home(): React.JSX.Element {
   return (
-    <div className="space-y-10">
-      <section className="space-y-4 border-b border-slate-800 pb-10">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-50">
-          Next.js Lifecycle Lab
+    <div className="max-w-4xl mx-auto space-y-10 py-6">
+      {/* Header section */}
+      <section className="space-y-4 border-b border-slate-800 pb-8 text-center sm:text-left">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-cyan-400 text-xs font-mono font-medium">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          <span>React 19 Hooks Demo</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-50">
+          Dynamic Tooltip with <code className="text-cyan-400 font-mono">useLayoutEffect</code>
         </h1>
-        <p className="text-lg text-slate-400 max-w-2xl leading-relaxed">
-          A minimalist testing ground for exploring Next.js App Router lifecycle patterns, server components, and UI interactions.
+        <p className="text-slate-400 text-base max-w-2xl leading-relaxed">
+          Hover over the target container below. The tooltip position is dynamically calculated by measuring the target element&apos;s exact bounding width synchronously before browser repainting.
         </p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 rounded-xl border border-slate-800/80 bg-slate-900/40 hover:border-cyan-500/50 transition-colors group">
-          <div className="w-10 h-10 rounded-lg bg-cyan-950/60 border border-cyan-800/50 flex items-center justify-center text-cyan-400 font-bold mb-4 group-hover:scale-105 transition-transform">
-            01
-          </div>
-          <h2 className="text-xl font-semibold text-slate-100 mb-2">
-            Component Lifecycle & State
-          </h2>
-          <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-            Explore server component execution, client component hydration, and state persistence across route navigations.
-          </p>
-          <Link
-            href="/labs"
-            className="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
-          >
-            Explore Labs &rarr;
-          </Link>
-        </div>
+      {/* Main Interactive Demo */}
+      <section className="space-y-6">
+        <HoverBox />
+      </section>
 
-        <div className="p-6 rounded-xl border border-slate-800/80 bg-slate-900/40 hover:border-blue-500/50 transition-colors group">
-          <div className="w-10 h-10 rounded-lg bg-blue-950/60 border border-blue-800/50 flex items-center justify-center text-blue-400 font-bold mb-4 group-hover:scale-105 transition-transform">
-            02
-          </div>
-          <h2 className="text-xl font-semibold text-slate-100 mb-2">
-            Routing & Architecture
-          </h2>
-          <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-            Demonstrates Next.js App Router nested layouts, dynamic routes, and page routing setup.
-          </p>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            About Project &rarr;
-          </Link>
-        </div>
+      {/* Concept Breakdown Card */}
+      <section className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-4">
+        <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+          <span className="text-cyan-400">#</span> How <code className="text-cyan-400 font-mono text-base">useLayoutEffect</code> Works Here
+        </h2>
+        <ul className="space-y-3 text-sm text-slate-300 leading-relaxed list-disc list-inside">
+          <li>
+            <strong className="text-slate-100">Synchronous Execution:</strong> Unlike <code className="text-cyan-300 font-mono">useEffect</code> (which runs asynchronously after the browser paints), <code className="text-cyan-300 font-mono">useLayoutEffect</code> fires synchronously right after DOM mutations but <em>before</em> the browser renders pixels on screen.
+          </li>
+          <li>
+            <strong className="text-slate-100">Flicker-Free Layout Calculations:</strong> Measuring <code className="text-cyan-300 font-mono">ref.current.getBoundingClientRect().width</code> inside <code className="text-cyan-300 font-mono">useLayoutEffect</code> guarantees the tooltip position is set before the frame is drawn, preventing visual repositioning glitches.
+          </li>
+        </ul>
       </section>
     </div>
   );
 }
-
