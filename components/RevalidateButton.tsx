@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition, useState } from "react";
-import { revalidatePosts } from "@/app/actions";
+import { revalidatePostsTag } from "@/app/actions";
 
 export function RevalidateButton(): React.JSX.Element {
   const [isPending, startTransition] = useTransition();
@@ -9,7 +9,7 @@ export function RevalidateButton(): React.JSX.Element {
 
   const handleRevalidate = () => {
     startTransition(async () => {
-      const result = await revalidatePosts();
+      const result = await revalidatePostsTag("posts");
       setLastRevalidated(result.revalidatedAt);
     });
   };

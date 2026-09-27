@@ -1,5 +1,5 @@
-import PostsPage from "./posts/page";
+import RevalidateHubPage from "./revalidate/page";
 
 export default function Home(): React.JSX.Element {
-  return <PostsPage />;
+  return <RevalidateHubPage />;
 }
